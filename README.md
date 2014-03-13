@@ -20,6 +20,7 @@ If you need help regarding methods, hooks and other wiki related documentation, 
 
 ## Links
 
+* [Installation & Updating] (https://github.com/ElunaLuaEngine/Eluna/wiki/Installation-&-Updating)
 * [Eluna Wiki](http://wiki.emudevs.com/doku.php?id=eluna)
 * [Eluna Scripts] (https://github.com/ElunaLuaEngine/Scripts)
 * [Eluna Support Forum](http://emudevs.com)
