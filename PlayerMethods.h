@@ -2060,6 +2060,32 @@ namespace LuaPlayer
         return 0;
     }
 
+    int SendAddonMessage(lua_State* L, Player* player)
+    {
+        std::string prefix = sEluna->CHECKVAL<std::string>(L, 2);
+        std::string message = sEluna->CHECKVAL<std::string>(L, 3);
+        uint8 channel = sEluna->CHECKVAL<uint8>(L, 4);
+        Player* receiver = sEluna->CHECKOBJ<Player>(L, 5);
+
+        std::string fullmsg = prefix + "\t" + message;
+
+        // Needs a custom built packet since TC doesnt send guid
+        WorldPacket* data = new WorldPacket();
+        uint32 messageLength = (uint32)strlen(fullmsg.c_str()) + 1;
+        data->Initialize(SMSG_MESSAGECHAT, 100);
+        *data << (uint8)channel;
+        *data << LANG_ADDON;
+        *data << player->GetGUID();
+        *data << uint32(0);
+        *data << player->GetGUID();
+        *data << messageLength;
+        *data << fullmsg;
+        *data << uint8(0);
+        player->GetSession()->SendPacket(data);
+        
+        return 0;
+    }
+
     int SendVendorWindow(lua_State* L, Player* player)
     {
         Unit* sendTo = sEluna->CHECKOBJ<Unit>(L, 2);
