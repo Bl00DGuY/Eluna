@@ -1772,9 +1772,12 @@ namespace LuaPlayer
     {
         uint32 xp = sEluna->CHECKVAL<uint32>(L, 2);
         Unit* victim = sEluna->CHECKOBJ<Unit>(L, 3, false);
+		bool triggerHook = sEluna->CHECKVAL<bool>(L, 4, false);
+		float group_rate = sEluna->CHECKVAL<float>(L, 5, 1.0f);
 
-        player->GiveXP(xp, victim);
-        return 0;
+		
+		player->GiveXPEluna(xp, victim, triggerHook, group_rate);
+		return 0;
     }
 
     int ToggleDND(lua_State* L, Player* player)
