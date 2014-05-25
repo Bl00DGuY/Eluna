@@ -1774,11 +1774,16 @@ namespace LuaPlayer
         Unit* victim = sEluna->CHECKOBJ<Unit>(L, 3, false);
 		bool triggerHook = sEluna->CHECKVAL<bool>(L, 4, false);
 		float group_rate = sEluna->CHECKVAL<float>(L, 5, 1.0f);
-
 		
 		player->GiveXPEluna(xp, victim, triggerHook, group_rate);
 		return 0;
     }
+
+	int StopCombat(lua_State* L, Player* player)
+	{
+		player->ClearInCombat();
+		return 0;
+	}
 
     int ToggleDND(lua_State* L, Player* player)
     {

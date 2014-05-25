@@ -10,6 +10,7 @@
 namespace LuaUnit
 {
     /* BOOLEAN */
+
     int Attack(lua_State* L, Unit* unit)
     {
         Unit* who = sEluna->CHECKOBJ<Unit>(L, 2);
